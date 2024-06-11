@@ -24,19 +24,19 @@
 		<form method="POST" action="proses.php">
 			<div class="mb-3 row">
 			    <label for="nisn" class="col-sm-2 col-form-label">
-			    	NISN
+			    	NIM
 			    </label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" id="nisn" placeholder="Ex: 11223340">
+			      <input type="text" name="nisn" class="form-control" id="nisn" placeholder="Ex: 11223340">
 			    </div>
 			</div>
 
 			<div class="mb-3 row">
 			    <label for="nama" class="col-sm-2 col-form-label">
-			    	Nama Siswa
+			    	Nama Mahasiswa
 			    </label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" id="nama" placeholder="Ex: Yani Sutisna">
+			      <input type="text" name="nama_siswa" class="form-control" id="nama" placeholder="Ex: Yani Sutisna">
 			    </div>
 			</div>
 
@@ -45,7 +45,7 @@
 			    	Jenis Kelamin
 			    </label>
 			    <div class="col-sm-10">
-			      	<select id="jk" class="form-select" aria-label="Default select example">
+			      	<select id="jk" name="jenis_kelamin" class="form-select" aria-label="Default select example">
 					  <option selected>Jenis Kelamin</option>
 					  <option value="Laki-laki">Laki-laki</option>
 					  <option value="Perempuan">Perempuan</option>
@@ -55,10 +55,10 @@
 
 			<div class="mb-3 row">
 			    <label for="foto" class="col-sm-2 col-form-label">
-			    	Foto Siswa
+			    	Foto Mahasiswa
 			    </label>
 			    <div class="col-sm-10">
-			      <input class="form-control" type="file" id="foto">
+			      <input class="form-control" type="file" name="foto" id="foto">
 			    </div>
 			</div>
 
@@ -67,7 +67,7 @@
 			    	Alamat lengkap
 			    </label>
 			    <div class="col-sm-10">
-			      <textarea class="form-control" id="alamat" rows="3"></textarea>
+			      <textarea class="form-control" id="alamat" name="alamat" rows="3"></textarea>
 			    </div>
 			</div>
 
