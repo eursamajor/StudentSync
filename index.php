@@ -1,3 +1,11 @@
+<?php
+	include 'koneksi.php';
+
+	$query = "SELECT * FROM tb_siswa;";
+	$sql = mysqli_query($conn, $query);
+	$no = 0;
+	?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +32,7 @@
 
 	<!-- Judul -->
 	<div class="container">
-		<h1 class="mt-4">Data Siswa</h1>
+		<h1 class="mt-4">Data Mahasiswa</h1>
 		<figure>
 		  <blockquote class="blockquote">
 		    <p>Data yang telah disimpan di database.</p>
@@ -42,51 +50,50 @@
 		    <thead>
 		      <tr>
 		        <th><center>No.</center></th>
-		        <th><center>NISN</center></th>
-		        <th><center>Nama Siswa</center></th>
+		        <th><center>NIM</center></th>
+		        <th><center>Nama Mahasiswa</center></th>
 		        <th><center>Jenis Kelamin</center></th>
-		        <th><center>Foto Siswa</center></th>
+		        <th><center>Foto Mahasiswa</center></th>
 		        <th><center>Alamat</center></th>
 		        <th><center>Aksi</center></th>
 		      </tr>
 		    </thead>
 		    <tbody>
-		      <tr>
-		        <td><center>1</center></td>
-		        <td>11223340</td>
-		        <td>Muhamad Khoir Fahni Nur Islami</td>
-		        <td>Laki-laki</td>
-		        <td>
-		        	<img src="img/img1.jpeg" style="width: 150px;">
-		        </td>
-		        <td>Jl. Pidana 1</td>
-		        <td>
-		        	<a href="kelola.php?ubah=1" type="button" class="btn btn-success btn-sm">
-		        		<i class="fa fa-pencil"></i>
-		        	</a>
-		        	<a href="proses.php?hapus=1" type="button" class="btn btn-danger btn-sm">
-		        		<i class="fa fa-trash"></i>
-		        	</a>
-		        </td>
-		      </tr>
-		      <tr>
-		        <td><center>2</center></td>
-		        <td>11223341</td>
-		        <td>Annisaa Alya Hafiza</td>
-		        <td>Perempuan</td>
-		        <td>
-		        	<img src="img/img2.jpeg" style="width: 150px;">
-		        </td>
-		        <td>Jl. Pekanbaru 1</td>
-		        <td>
-		        	<a href="kelola.php?ubah=2" type="button" class="btn btn-success btn-sm">
-		        		<i class="fa fa-pencil"></i>
-		        	</a>
-		        	<a href="proses.php?hapus=2" type="button" class="btn btn-danger btn-sm">
-		        		<i class="fa fa-trash"></i>
-		        	</a>
-		        </td>
-		      </tr>
+			<?php
+				while($result = mysqli_fetch_assoc($sql)){
+			?>
+				<tr>
+					<td><center>
+						<?php echo ++$no; ?>.
+					</center></td>
+					<td>
+					<?php echo $result['nisn']; ?>
+					</td>
+					<td>
+					<?php echo $result['nama_siswa']; ?>
+					</td>
+					<td>
+					<?php echo $result['jenis_kelamin']; ?>
+					</td>
+					<td>
+						<img src="img/<?php echo $result['foto_siswa']; ?>" style="width: 150px;">
+					</td>
+					<td>
+					<?php echo $result['alamat']; ?>
+					</td>
+					<td>
+						<a href="kelola.php?ubah=<?php echo $result['foto_siswa']; ?>" type="button" class="btn btn-success btn-sm">
+							<i class="fa fa-pencil"></i>
+						</a>
+						<a href="proses.php?hapus=<?php echo $result['foto_siswa']; ?>" type="button" class="btn btn-danger btn-sm">
+							<i class="fa fa-trash"></i>
+						</a>
+					</td>
+				</tr>
+			<?php
+				}
+			?>
+			</tbody>
 		  </table>
 		</div>
 	</div>
