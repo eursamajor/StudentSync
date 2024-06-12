@@ -1,4 +1,27 @@
 <!DOCTYPE html>
+<?php
+	include 'koneksi.php';
+
+	$id_siswa = '';
+	$nisn = '';
+	$nama_siswa = '' ;
+	$jenis_kelamin = '';
+	$alamat = '';
+
+	if(isset($_GET['ubah'])){
+		$id_siswa = $_GET['ubah'];
+		
+		$query = "SELECT * FROM tb_siswa WHERE id_siswa = '$id_siswa';";
+		$sql = mysqli_query($conn, $query);
+
+		$result = mysqli_fetch_assoc($sql);
+
+		$nisn = $result['nisn'];
+		$nama_siswa = $result['nama_siswa'];
+		$jenis_kelamin = $result['jenis_kelamin'];
+		$alamat = $result['alamat'];
+	}
+?>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -21,13 +44,14 @@
 	  </div>
 	</nav>
 	<div class="container">
-		<form method="POST" action="proses.php">
+		<form method="POST" action="proses.php" enctype="multipart/form-data">
+			<input type="hidden" value="<?php echo $id_siswa; ?>" name="id_siswa">
 			<div class="mb-3 row">
 			    <label for="nisn" class="col-sm-2 col-form-label">
 			    	NIM
 			    </label>
 			    <div class="col-sm-10">
-			      <input type="text" name="nisn" class="form-control" id="nisn" placeholder="Ex: 11223340">
+			      <input required type="text" name="nisn" class="form-control" id="nisn" placeholder="Ex: 11223340" value="<?php echo $nisn ?>">
 			    </div>
 			</div>
 
@@ -36,7 +60,7 @@
 			    	Nama Mahasiswa
 			    </label>
 			    <div class="col-sm-10">
-			      <input type="text" name="nama_siswa" class="form-control" id="nama" placeholder="Ex: Yani Sutisna">
+			      <input required type="text" name="nama_siswa" class="form-control" id="nama" placeholder="Ex: Yani Sutisna" value="<?php echo $nama_siswa ?>">
 			    </div>
 			</div>
 
@@ -45,10 +69,9 @@
 			    	Jenis Kelamin
 			    </label>
 			    <div class="col-sm-10">
-			      	<select id="jk" name="jenis_kelamin" class="form-select" aria-label="Default select example">
-					  <option selected>Jenis Kelamin</option>
-					  <option value="Laki-laki">Laki-laki</option>
-					  <option value="Perempuan">Perempuan</option>
+			      	<select required id="jkel" name="jenis_kelamin" class="form-select">
+					  <option <?php if($jenis_kelamin == 'Laki-laki'){ echo "selected";} ?> value="Laki-laki">Laki-laki</option>
+					  <option <?php if($jenis_kelamin == 'Perempuan'){ echo "selected";} ?> value="Perempuan">Perempuan</option>
 					</select>
 			    </div>
 			</div>
@@ -58,7 +81,7 @@
 			    	Foto Mahasiswa
 			    </label>
 			    <div class="col-sm-10">
-			      <input class="form-control" type="file" name="foto" id="foto">
+			      <input <?php if(!isset($_GET['ubah'])){ echo "required";}?> class="form-control" type="file" name="foto" id="foto" accept="image/*">
 			    </div>
 			</div>
 
@@ -67,7 +90,7 @@
 			    	Alamat lengkap
 			    </label>
 			    <div class="col-sm-10">
-			      <textarea class="form-control" id="alamat" name="alamat" rows="3"></textarea>
+			      <textarea required class="form-control" id="alamat" name="alamat" rows="3"><?php echo $alamat ?></textarea>
 			    </div>
 			</div>
 
