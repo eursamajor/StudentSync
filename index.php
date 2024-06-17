@@ -1,5 +1,7 @@
 <?php
 	include 'koneksi.php';
+	session_start();
+
 
 	$query = "SELECT * FROM tb_siswa;";
 	$sql = mysqli_query($conn, $query);
@@ -17,9 +19,22 @@
 
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="fontawesome/css/font-awesome.min.css">
-	
+
+	<!-- Data Tables -->
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
 	<title>StudentSync</title>
 </head>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#dt').DataTable();
+    });
+</script>
+
+
 <body>
 	<nav class="navbar navbar-light bg-light">
 	  <div class="container-fluid">
@@ -45,8 +60,23 @@
 			<i class="fa fa-plus"></i>
 			Tambah Data
 		</a>
+
+		<?php
+			if(isset($_SESSION['eksekusi'])): 
+		?>
+				<div class="alert alert-success alert-dismissible fade show" role="alert">
+						<?php
+							echo $_SESSION['eksekusi'];
+						?>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+		<?php
+			session_destroy();
+			endif;
+		?>
+
 		<div class="table-responsive">
-		  <table class="table align-middle table-bordered table-hover">
+		  <table id="dt" class="table align-middle cell-border hover">
 		    <thead>
 		      <tr>
 		        <th><center>No.</center></th>
@@ -97,5 +127,6 @@
 		  </table>
 		</div>
 	</div>
+	<div class="mb-5"></div>
 </body>
 </html>
