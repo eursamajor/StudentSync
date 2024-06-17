@@ -39,7 +39,7 @@
 	<nav class="navbar navbar-light bg-light mb-4">
 	  <div class="container-fluid">
 	    <a class="navbar-brand" href="#">
-	      CRUD - BS5
+	      StudentSync
 	    </a>
 	  </div>
 	</nav>
