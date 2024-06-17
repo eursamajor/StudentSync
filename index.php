@@ -53,7 +53,7 @@
 		    <p>Data yang telah disimpan di database.</p>
 		  </blockquote>
 		  <figcaption class="blockquote-footer">
-		    CRUD <cite title="Source Title">Create Read Update Delete</cite>
+		    FIF S1 Informatika<cite title="Source Title"></cite>
 		  </figcaption>
 		</figure>
 		<a href="kelola.php" type="button" class="btn btn-primary mb-3">
